@@ -6,7 +6,7 @@ authors = [
     {name = "Darinochka1",email = "darisha6602@gmail.com"}
 ]
 readme = "README.md"
-requires-python = "3.10.10"
+requires-python = ">=3.10,<3.11"
 dependencies = [
     "pre-commit (>=4.4.0,<5.0.0)"
 ]
