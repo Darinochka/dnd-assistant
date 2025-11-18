@@ -11,6 +11,9 @@ dependencies = [
     "pre-commit (>=4.4.0,<5.0.0)"
 ]
 
+[tool.ruff]
+line-length = 88
+indent-width = 4
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
