@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  retriever:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ~/.cache/huggingface/hub:/.cache/huggingface/hub
+      - ./data/faiss_indexes:/faiss_indexes
+    environment:
+      - HF_HOME=/.cache/huggingface/hub
+      - HUGGINGFACE_HUB_CACHE=/.cache/huggingface/hub
+    command: python3 -m src.servers.retriever_server --port 8000 --db-save-folder /faiss_indexes

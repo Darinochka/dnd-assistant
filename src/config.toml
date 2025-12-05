@@ -1,0 +1,11 @@
+[documents]
+folder = "/data/documents"
+target_column = "text"
+chunk_size = 700
+chunk_overlap = 200
+
+[retriever]
+embedding_model = "BAAI/bge-m3"
+rerank_model = "BAAI/bge-reranker-v2-m3"
+normalize_embeddings = false
+ensemble = false
