@@ -10,7 +10,12 @@ requires-python = ">=3.10,<3.11"
 dependencies = [
     "pre-commit (>=4.4.0,<5.0.0)",
     "langchain (==0.1.14)",
-    "datasets (>=4.4.1,<5.0.0)"
+    "datasets (>=4.4.1,<5.0.0)",
+    "fastapi (>=0.110.0,<0.111.0)",
+    "langserve[all] (>=0.0.47,<0.0.48)",
+    "httpx[socks] (>=0.27.0,<0.28.0)",
+    "toml (>=0.10.2,<0.11.0)",
+    "pdfminer-six (>=20251107,<20251108)"
 ]
 
 [tool.ruff]

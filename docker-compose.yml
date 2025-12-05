@@ -7,6 +7,7 @@ services:
     volumes:
       - ~/.cache/huggingface/hub:/.cache/huggingface/hub
       - ./data/faiss_indexes:/faiss_indexes
+      - ./data/documents:/data/documents
     environment:
       - HF_HOME=/.cache/huggingface/hub
       - HUGGINGFACE_HUB_CACHE=/.cache/huggingface/hub
