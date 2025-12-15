@@ -31,7 +31,7 @@
 
 ---
 ## Архитектура пайплайна и взаимодействие компонентов
-
+```mermaid
 flowchart TB
 
     %% USERS
@@ -90,7 +90,7 @@ flowchart TB
     CW --> FORMAT
 
     FORMAT --> TG
-
+```
 
 ## Данные
 
