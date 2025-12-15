@@ -102,3 +102,15 @@ flowchart TB
 ```python
 from datasets import load_dataset
 dataset = load_dataset("mixlizer/for_dnd_assistant")
+```
+
+
+## Использованный стек
+- Python 3.10+
+- Telegram Bot: aiogram
+- RAG: LangChain
+- Vector DB: Qdrant
+- Embeddings: Sentence Transformers
+- Document Parsing: unstructured, pypdf
+- Backend: FastAPI
+
