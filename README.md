@@ -30,6 +30,67 @@
 Это обеспечивает **предсказуемость**, **соответствие правилам** и **минимум галлюцинаций**.
 
 ---
+## Архитектура пайплайна и взаимодействие компонентов
+
+flowchart TB
+
+    %% USERS
+    User[User]
+    TG[Telegram_Bot]
+
+    User --> TG
+
+    %% ROUTER
+    TG --> RR[Request_Router]
+
+    %% ROLES
+    RR -->|Player| PW[Player_Workflows]
+    RR -->|DM| DW[DM_Workflows]
+
+    %% PLAYER WORKFLOWS
+    PW --> PRQ[Rules_Query_Workflow]
+    PW --> PAW[Action_Interpretation_Workflow]
+
+    %% DM WORKFLOWS
+    DW --> NPCW[NPC_Dialogue_Workflow]
+    DW --> CW[Combat_Simulation_Workflow]
+    DW --> CGW[Character_Generation_Workflow]
+    DW --> KIW[Knowledge_Ingestion_Workflow]
+
+    %% PLAYER RAG
+    PRQ --> PRAG[Player_RAG]
+    PAW --> PRAG
+
+    %% DM RAG
+    NPCW --> DRAG[DM_RAG]
+    CGW --> DRAG
+
+    %% VECTOR DATABASES
+    PRAG <--> RDB[(Rules_Vector_DB)]
+    DRAG <--> CDB[(Campaign_Vector_DB)]
+  
+
+    %% INGESTION PIPELINE
+    KIW --> PARSER[Document_Parser]
+    PARSER --> CHUNK[Text_Chunker]
+    CHUNK --> EMB[Embedding_Model]
+
+    %% ROUTING TO DBS
+
+    EMB --> CDB
+
+    %% COMBAT LOGIC
+    CW --> DICE[Dice_Engine]
+    DICE --> CW
+
+
+    %% OUTPUT
+    PRAG --> FORMAT[Response_Formatter]
+    DRAG --> FORMAT
+    CW --> FORMAT
+
+    FORMAT --> TG
+
 
 ## Данные
 
