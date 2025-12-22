@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - 6333:6333
+      - 6334:6334
+    volumes:
+      - ./data/qdrant_storage:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+
   retriever:
     ports:
       - 8000:8000
@@ -8,9 +18,12 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ~/.cache/huggingface/hub:/.cache/huggingface/hub
-      - ./data/faiss_indexes:/faiss_indexes
+      - ./data/qdrant_indexes:/qdrant_indexes
       - ./data/documents:/data/documents
+      - ./src/config.toml:/app/src/config.toml
     environment:
       - HF_HOME=/.cache/huggingface/hub
       - HUGGINGFACE_HUB_CACHE=/.cache/huggingface/hub
-    command: python3 -m src.servers.retriever_server --port 8000 --db-save-folder /faiss_indexes
+    depends_on:
+      - qdrant
+    command: python3 -m src.servers.retriever_server --port 8000
