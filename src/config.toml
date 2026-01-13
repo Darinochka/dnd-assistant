@@ -9,3 +9,18 @@ embedding_model = "BAAI/bge-m3"
 rerank_model = "BAAI/bge-reranker-v2-m3"
 normalize_embeddings = false
 ensemble = false
+url = "http://retriever:8000"
+
+[vllm]
+url = "http://localhost:8080/v1/completions"
+prompt_template = """Используя следующую информацию из документов, ответь на вопрос пользователя.
+
+Контекст из документов:
+{context}
+
+Вопрос: {question}
+
+Ответ:"""
+default_temperature = 0.7
+default_top_p = 0.9
+default_max_tokens = 512
