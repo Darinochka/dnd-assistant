@@ -127,7 +127,7 @@ flowchart TB
     %% VECTOR DATABASES
     PRAG <--> RDB[(Rules_Vector_DB)]
     DRAG <--> CDB[(Campaign_Vector_DB)]
-  
+
 
     %% INGESTION PIPELINE
     KIW --> PARSER[Document_Parser]
@@ -186,3 +186,13 @@ dataset = load_dataset("mixlizer/for_dnd_assistant")
 - Document Parsing: unstructured, pypdf
 - Backend: FastAPI
 
+## Запуск vllm модели
+```
+docker run --gpus all \
+      -v ~/.cache/huggingface:/root/.cache/huggingface \
+      --env "HF_TOKEN=$HF_TOKEN" \
+      -p 8080:8000 \
+      --ipc=host \
+      vllm/vllm-openai:latest \
+      --model Qwen/Qwen3-0.6B-GPTQ-Int8
+```
