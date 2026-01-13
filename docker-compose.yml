@@ -13,7 +13,7 @@ services:
     environment:
       - HF_HOME=/.cache/huggingface/hub
       - HUGGINGFACE_HUB_CACHE=/.cache/huggingface/hub
-    command: python3 -m src.servers.retriever_server --port 8000 --db-save-folder /faiss_indexes
+    command: python3 -m src.servers.retriever_server --port 8000 --db-load-folder /faiss_indexes
     networks:
       - intra
 
@@ -26,6 +26,8 @@ services:
     volumes:
       - ./src/config.toml:/app/src/config.toml
     command: python3 -m src.servers.answer_server --port 5000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - intra
 
