@@ -181,7 +181,7 @@ dataset = load_dataset("mixlizer/for_dnd_assistant")
 - Python 3.10+
 - Telegram Bot: aiogram
 - RAG: LangChain
-- Vector DB: Qdrant
+- Vector DB: FAISS
 - Embeddings: Sentence Transformers
 - Document Parsing: unstructured, pypdf
 - Backend: FastAPI
